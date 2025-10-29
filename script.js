@@ -108,6 +108,46 @@ window.addEventListener('load', function() {
     }
 });
 
+// Mobile sidebar toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.mobile-overlay');
+
+    function openMenu() {
+        if (sidebar) sidebar.classList.add('open');
+        if (overlay) overlay.classList.add('active');
+    }
+
+    function closeMenu() {
+        if (sidebar) sidebar.classList.remove('open');
+        if (overlay) overlay.classList.remove('active');
+    }
+
+    if (toggle) {
+        toggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (sidebar && sidebar.classList.contains('open')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+    }
+
+    if (overlay) {
+        overlay.addEventListener('click', closeMenu);
+    }
+
+    // Close on nav click (for mobile)
+    document.querySelectorAll('.sidebar-link').forEach(link => {
+        link.addEventListener('click', () => {
+            // only close if viewport is mobile
+            if (window.innerWidth <= 768) closeMenu();
+        });
+    });
+});
+
 // Add intersection observer for skill categories
 const skillObserver = new IntersectionObserver(function(entries) {
     entries.forEach(entry => {
