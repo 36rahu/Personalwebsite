@@ -549,6 +549,11 @@ body {
     font-size: 1.1rem;
 }
 
+.stack-overflow-btn {
+    margin-top: 1rem;
+    display: inline-flex;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .sidebar {
